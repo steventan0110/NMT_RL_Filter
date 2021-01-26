@@ -63,10 +63,10 @@ class LanguageActor(torch.nn.Module):
     return logits
 
 
-class AveEmbActor1(torch.nn.Module):
+class AveEmbActor(torch.nn.Module):
     """Average Embedding actor"""
     def __init__(self, args, task, emb=None, optimize_emb=True):
-        super(AveEmbActor1, self).__init__()
+        super(AveEmbActor, self).__init__()
         #assert task.source_dictionary == task.target_dictionary
         src_dictionary = task.source_dictionary
         trg_dictionary = task.target_dictionary
@@ -160,10 +160,10 @@ class AveEmbActor2(torch.nn.Module):
         return score 
 
 
-class AveEmbActor(torch.nn.Module):
+class AveEmbActor1(torch.nn.Module):
     """Transformer based actor"""
     def __init__(self, args, task):
-        super(AveEmbActor, self).__init__()
+        super(AveEmbActor1, self).__init__()
         args = copy.deepcopy(args)
         args.arch = 'transformer'
         args.encoder_embed_dim = getattr(args, 'encoder_embed_dim', 128)

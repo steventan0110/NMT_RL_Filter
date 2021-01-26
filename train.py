@@ -72,16 +72,14 @@ def main(args, init_distributed=False):
 
     # pretrain data actor
     # only the language actor model can be pretrained
-    pretrain = True # temp bool for test purpose
-    if pretrain and args.pretrain_data_actor and args.data_actor == 'ave':
+
+    if args.pretrain_laser and args.pretrain_data_actor and args.data_actor == 'ave':
         # pretrain the agent with LASER score
         # epoch_itr, indices = trainer.get_train_iterator(1)
         path = '/home/wtan12/multiDDS/'
-        trainer.pretrain_LASER(path+'en-ps.laser-score', epoch_itr)
-        # return
+        trainer.pretrain_LASER('en-ps.laser-score', epoch_itr)
 
-    compare_laser = False
-    if compare_laser:
+    if args.compare_laser:
         epoch_itr, indices = trainer.get_train_iterator(1)
         print('Number of Indices: ', len(indices))
         scores = collections.defaultdict(float)
@@ -218,7 +216,7 @@ def train(args, trainer, task, epoch_itr, generator=None, filtered_maxpos_indice
             continue
 
         # update the data selector
-        if args.select_by_dds_epoch > 0 and i % args.update_data_selector == 0:
+        if args.select_by_dds_epoch > 0 and args.update_data_selector > 0 and i % args.update_data_selector == 0:
             trainer.update_data_selector(args)
 
         # log mid-epoch stats

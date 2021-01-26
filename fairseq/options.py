@@ -330,6 +330,10 @@ def add_data_filter_args(parser):
                        help="the epoch to start filter data")
     group.add_argument("--random-data-filter-by-len", action="store_true",
                        help="the epoch to start filter data")
+    group.add_argument("--pretrain-laser", action="store_true",
+                       help="pretrain the data actor with LASER scores")
+    group.add_argument("--compare-laser", action="store_true",
+                       help="compare the RL prediction score with LASER score using R2")
 
 
 def add_preprocess_args(parser):

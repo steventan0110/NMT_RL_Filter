@@ -328,6 +328,7 @@ def filter_by_data_actor(indices, dataset, data_actor, data_filter_percentage=-1
             # print(scores[idx_start:idx_end])
             # print("")
         # argsort is ascending order
+        print(scores)
         preserved_indices = np.argsort(scores)[int(len(indices)*data_filter_percentage):]
         worst_id = np.array(ids)[np.argsort(scores)[:10]]
         best_id = np.array(ids)[np.argsort(scores)[-10:]]
